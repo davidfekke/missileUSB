@@ -8,12 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    let usbController = AirCannon()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            Button("Up") {
+                usbController.moveTimed(direction: "up")
+            }
+            HStack {
+                Button("Left") {
+                    usbController.moveTimed(direction: "left")
+                }
+                Button("Stop") {
+                    usbController.moveTimed(direction: "stop")
+                }
+                Button("Right") {
+                    usbController.moveTimed(direction: "right")
+                }
+            }
+            
+            Button("Down") {
+                usbController.moveTimed(direction: "down")
+            }
+            Button("Fire") {
+                usbController.moveTimed(direction: "fire", duration: 2)
+            }
         }
         .padding()
     }
