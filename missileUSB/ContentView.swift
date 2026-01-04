@@ -10,29 +10,49 @@ import SwiftUI
 struct ContentView: View {
     let usbController = AirCannon()
     
+    
+    // Set up the listener
+   
+    
     var body: some View {
         VStack {
             
             Button("Up") {
-                usbController.moveTimed(direction: "up")
+                Task {
+                    await usbController.moveSmart(direction: .up, duration: 0.5)
+                }
             }
             HStack {
                 Button("Left") {
-                    usbController.moveTimed(direction: "left")
+                    Task {
+                        await usbController.moveSmart(direction: .left, duration: 0.5)
+                    }
+                    
                 }
                 Button("Stop") {
-                    usbController.moveTimed(direction: "stop")
+                    Task {
+                        usbController.stop()
+                    }
+                    
                 }
                 Button("Right") {
-                    usbController.moveTimed(direction: "right")
+                    Task {
+                        await usbController.moveSmart(direction: .right, duration: 0.5)
+                    }
+                    
                 }
             }
             
             Button("Down") {
-                usbController.moveTimed(direction: "down")
+                Task {
+                    await usbController.moveSmart(direction: .down, duration: 0.5)
+                }
+                
             }
             Button("Fire") {
-                usbController.moveTimed(direction: "fire", duration: 2)
+                Task {
+                    await usbController.fireAndWait {}
+                }
             }
         }
         .padding()
