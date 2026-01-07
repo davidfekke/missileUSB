@@ -4,4 +4,6 @@
 
 This is a small app I wrote for controlling the Dream Cheeky USB missile launcher.
 
+![Dream Cheeky USB Missile Launcher](./00-997-033-05.webp)
+
 Copyright David Fekke LLC 2026
