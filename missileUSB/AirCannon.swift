@@ -10,6 +10,8 @@ class AirCannon {
     private var lastStatus: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0]
     // Allocate 8 bytes of memory for the report buffer
     private let reportBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 8)
+    
+    private let hidWriteQueue = DispatchQueue(label: "hid.write.queue")
 
     // Your existing logic now works instantly
     var isFiringInProgress: Bool {
@@ -76,18 +78,24 @@ class AirCannon {
             return
         }
 
-        let reportID: CFIndex = 0
-        let result = IOHIDDeviceSetReport(
-            device,
-            kIOHIDReportTypeOutput,
-            reportID,
-            bytes,
-            bytes.count
-        )
+        hidWriteQueue.async {
+        
+            let reportID: CFIndex = 0
+            let result = IOHIDDeviceSetReport(
+                device,
+                kIOHIDReportTypeOutput,
+                reportID,
+                bytes,
+                bytes.count
+            )
 
-        if result != kIOReturnSuccess {
-            print("Failed to send command: \(result)")
+            if result != kIOReturnSuccess {
+                print("Failed to send command: \(result)")
+            }
+            
         }
+        
+        
     }
 
     // MARK: - Commands

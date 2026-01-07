@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE52846D2F0575DF00F7B5DD /* Build configuration list for PBXProject "missileUSB" */;
+			buildConfigurationList = AE52846D2F0575DF00F7B5DD /* Build configuration list for PBXProject "MissileUSB" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE52846D2F0575DF00F7B5DD /* Build configuration list for PBXProject "missileUSB" */ = {
+		AE52846D2F0575DF00F7B5DD /* Build configuration list for PBXProject "MissileUSB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE52847B2F0575E100F7B5DD /* Debug */,
