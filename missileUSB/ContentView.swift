@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     let usbController = AirCannon()
-    
-    
-    // Set up the listener
    
-    
     var body: some View {
         VStack {
             

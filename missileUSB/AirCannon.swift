@@ -29,20 +29,28 @@ class AirCannon {
     
     init() {
         manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
-            
+        
+        // Safely unwrap the manager before proceeding
+        guard let manager = manager else {
+            print("Failed to create IOHIDManager")
+            return
+        }
+        
         let deviceMatch: [String: Any] = [
             kIOHIDVendorIDKey: vendorID,
             kIOHIDProductIDKey: productID
         ]
         
-        IOHIDManagerSetDeviceMatching(manager!, deviceMatch as CFDictionary)
+        IOHIDManagerSetDeviceMatching(manager, deviceMatch as CFDictionary)
         
         // 1. Create the pointer for 'self' to use inside closures
         let clientPointer = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
         
         // 2. Register the matching callback
-        IOHIDManagerRegisterDeviceMatchingCallback(manager!, { (context, result, sender, device) in
-            let mySelf = Unmanaged<AirCannon>.fromOpaque(context!).takeUnretainedValue()
+        IOHIDManagerRegisterDeviceMatchingCallback(manager, { (context, result, sender, device) in
+            guard let context = context else { return }
+            // guard let device = device else { return }
+            let mySelf = Unmanaged<AirCannon>.fromOpaque(context).takeUnretainedValue()
             mySelf.device = device
             print("Cannon Connected!")
             
@@ -53,7 +61,9 @@ class AirCannon {
                 mySelf.reportBuffer,
                 8,
                 { (context, result, sender, type, reportId, report, reportLength) in
-                    let mySelf = Unmanaged<AirCannon>.fromOpaque(context!).takeUnretainedValue()
+                    guard let context = context else { return }
+                    //, let report = report else { return }
+                    let mySelf = Unmanaged<AirCannon>.fromOpaque(context).takeUnretainedValue()
                     let data = UnsafeBufferPointer(start: report, count: reportLength)
                     mySelf.lastStatus = Array(data)
                 },
@@ -62,10 +72,10 @@ class AirCannon {
             // ------------------------------
             
         }, clientPointer)
-
+        
         // 3. Schedule and Open
-        IOHIDManagerScheduleWithRunLoop(manager!, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
-        IOHIDManagerOpen(manager!, IOOptionBits(kIOHIDOptionsTypeNone))
+        IOHIDManagerScheduleWithRunLoop(manager, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
+        IOHIDManagerOpen(manager, IOOptionBits(kIOHIDOptionsTypeNone))
     }
     
     private func getStatus() -> [UInt8] {
@@ -166,3 +176,4 @@ class AirCannon {
         }
     }
 }
+
