@@ -12,6 +12,8 @@ class AirCannon {
     private let reportBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 8)
     
     private let hidWriteQueue = DispatchQueue(label: "hid.write.queue")
+    private let movementQueue = DispatchQueue(label: "cannon.movement.queue")
+    private var activeMovementID: UUID?
 
     // Your existing logic now works instantly
     var isFiringInProgress: Bool {
@@ -116,29 +118,54 @@ class AirCannon {
     func right() { send(bytes: [0x08, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]) }
     func fire()  { send(bytes: [0x10, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]) }
     
-    func moveSmart(direction: CannonDirection, duration: Double) async {
-        // 1. Start moving
+    func startMoving(_ direction: CannonDirection) {
+        if isLimitReached(for: direction) {
+            print("Limit reached for \(direction)! Stopping.")
+            stopMoving()
+            return
+        }
+
+        let movementID = UUID()
+        movementQueue.sync {
+            activeMovementID = movementID
+        }
+
+        move(direction)
+        monitorLimit(for: direction, movementID: movementID)
+    }
+
+    func stopMoving() {
+        movementQueue.sync {
+            activeMovementID = nil
+        }
+        stop()
+    }
+
+    private func move(_ direction: CannonDirection) {
         switch direction {
         case .up:    up()
         case .down:  down()
         case .left:  left()
         case .right: right()
         }
+    }
 
-        let startTime = Date()
-        
-        // 2. Monitor on a background thread
+    private func monitorLimit(for direction: CannonDirection, movementID: UUID) {
         DispatchQueue.global(qos: .userInitiated).async {
-            while Date().timeIntervalSince(startTime) < duration {
+            while self.isMovementActive(movementID) {
                 if self.isLimitReached(for: direction) {
                     print("Limit reached for \(direction)! Stopping.")
-                    break
+                    self.stopMoving()
+                    return
                 }
                 usleep(5000) // Poll every 5ms
             }
-            
-            // 3. Stop movement
-            self.stop()
+        }
+    }
+
+    private func isMovementActive(_ movementID: UUID) -> Bool {
+        movementQueue.sync {
+            activeMovementID == movementID
         }
     }
     

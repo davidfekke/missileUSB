@@ -15,6 +15,7 @@ struct missileUSBApp: App {
         WindowGroup {
             ContentView()
         }
+        .defaultSize(width: 360, height: 640)
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.appInfo) {
                 Button {

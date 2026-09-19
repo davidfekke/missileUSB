@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		AE5284722F0575DF00F7B5DD /* missileUSB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = missileUSB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE5284722F0575DF00F7B5DD /* MissileUSB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissileUSB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AE5284742F0575DF00F7B5DD /* missileUSB */ = {
+		AE5284742F0575DF00F7B5DD /* MissileUSB */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = missileUSB;
+			path = MissileUSB;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		AE5284692F0575DF00F7B5DD = {
 			isa = PBXGroup;
 			children = (
-				AE5284742F0575DF00F7B5DD /* missileUSB */,
+				AE5284742F0575DF00F7B5DD /* MissileUSB */,
 				AE5284732F0575DF00F7B5DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		AE5284732F0575DF00F7B5DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE5284722F0575DF00F7B5DD /* missileUSB.app */,
+				AE5284722F0575DF00F7B5DD /* MissileUSB.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE5284712F0575DF00F7B5DD /* missileUSB */ = {
+		AE5284712F0575DF00F7B5DD /* MissileUSB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE52847D2F0575E100F7B5DD /* Build configuration list for PBXNativeTarget "missileUSB" */;
+			buildConfigurationList = AE52847D2F0575E100F7B5DD /* Build configuration list for PBXNativeTarget "MissileUSB" */;
 			buildPhases = (
 				AE52846E2F0575DF00F7B5DD /* Sources */,
 				AE52846F2F0575DF00F7B5DD /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AE5284742F0575DF00F7B5DD /* missileUSB */,
+				AE5284742F0575DF00F7B5DD /* MissileUSB */,
 			);
-			name = missileUSB;
+			name = MissileUSB;
 			packageProductDependencies = (
 			);
 			productName = missileUSB;
-			productReference = AE5284722F0575DF00F7B5DD /* missileUSB.app */;
+			productReference = AE5284722F0575DF00F7B5DD /* MissileUSB.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE5284712F0575DF00F7B5DD /* missileUSB */,
+				AE5284712F0575DF00F7B5DD /* MissileUSB */,
 			);
 		};
 /* End PBXProject section */
@@ -251,9 +251,10 @@
 				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = JXRDDKQ33V;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
@@ -274,9 +275,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fekke.missileUSB;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MissileUSB;
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
@@ -301,9 +302,10 @@
 				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = JXRDDKQ33V;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
@@ -324,9 +326,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fekke.missileUSB;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MissileUSB;
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
@@ -355,7 +357,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE52847D2F0575E100F7B5DD /* Build configuration list for PBXNativeTarget "missileUSB" */ = {
+		AE52847D2F0575E100F7B5DD /* Build configuration list for PBXNativeTarget "MissileUSB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE52847E2F0575E100F7B5DD /* Debug */,
